@@ -9,36 +9,49 @@ const LoginPage = () => {
   const [submitted, setSubmitted] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(5);
   const [formData, setFormData] = useState({ name: '', phone: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const telegramLink = "https://t.me/umida_pardalari_bot";
 
   useEffect(() => {
     if (submitted && secondsLeft > 0) {
-      const timer = setTimeout(() => setSecondsLeft((prev) => prev - 1), 1000);
+      const timer = setTimeout(() => setSecondsLeft(prev => prev - 1), 1000);
       return () => clearTimeout(timer);
     }
-
     if (submitted && secondsLeft === 0) {
       window.location.href = telegramLink;
     }
   }, [submitted, secondsLeft]);
 
+  const isValidPhone = (phone) => {
+    const uzbekRegex = /^\+998\s\d{2}\s\d{3}\s\d{2}\s\d{2}$/;
+    return uzbekRegex.test(phone);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return; // prevent double clicks
+
     const name = e.target.name.value.trim();
     const phone = e.target.phone.value.trim();
 
+    if (!isValidPhone(phone)) {
+      alert("Iltimos, raqamni +998 90 123 45 67 formatida kiriting.");
+      return;
+    }
+
     const data = { name, phone };
-    setFormData(data);
+    setIsSubmitting(true); // disable button
 
     const { error } = await supabase
-      .from('submissions_parda') // ✅ updated table name here
+      .from('submissions_parda') // ✅ fixed table name
       .insert([data]);
 
     if (error) {
       console.error("❌ Supabase error:", error.message);
+      setIsSubmitting(false);
     } else {
-      console.log("✅ Data saved to Supabase:", data);
+      setFormData(data);
       setSubmitted(true);
     }
   };
@@ -56,24 +69,34 @@ const LoginPage = () => {
               Master Class uchun oʻz joyingizni band qiling
             </CardTitle>
             <p className="text-sm text-gray-500">
-              Shunchaki kontaktlaringizni qoldirib, Telegram botimga oʻting
+              Kontaktlaringizni yozing, keyin Telegram botga oʻtasiz
             </p>
           </CardHeader>
 
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-base">Ismingizni yozing</Label>
+                <Label htmlFor="name" className="text-base">Ismingiz</Label>
                 <Input name="name" id="name" placeholder="Ismingiz" className="h-12 text-base" required />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="phone" className="text-base">Raqamingizni yozing</Label>
-                <Input name="phone" id="phone" placeholder="+998 99 999 99 99" className="h-12 text-base" required />
+                <Label htmlFor="phone" className="text-base">Telefon raqam</Label>
+                <Input
+                  name="phone"
+                  id="phone"
+                  placeholder="+998 90 123 45 67"
+                  className="h-12 text-base"
+                  required
+                />
               </div>
 
-              <Button type="submit" className="w-full h-12 text-lg font-semibold bg-black hover:bg-gray-800">
-                Yuborish
+              <Button
+                type="submit"
+                className="w-full h-12 text-lg font-semibold bg-black hover:bg-gray-800 disabled:opacity-50"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Yuborilmoqda..." : "Yuborish"}
               </Button>
 
               <p className="text-center text-sm text-gray-400">Bu mutlaqo BEPUL</p>
@@ -85,7 +108,6 @@ const LoginPage = () => {
       {submitted && (
         <div className="fixed inset-0 z-50 flex flex-col">
           <div className="h-1/2 bg-black/30" />
-
           <div className="h-1/2 bg-black text-white px-6 py-8 flex flex-col justify-between rounded-t-2xl">
             <div className="text-center space-y-4">
               <h2 className="text-2xl font-bold">Sizni Telegram botga yuboramiz</h2>
@@ -97,7 +119,6 @@ const LoginPage = () => {
                 Raqamingiz: <b>{formData.phone}</b>
               </p>
             </div>
-
             <Button
               onClick={handleManualRedirect}
               className="w-full mt-6 bg-white text-black font-bold text-lg h-12 rounded-xl hover:bg-gray-200"
