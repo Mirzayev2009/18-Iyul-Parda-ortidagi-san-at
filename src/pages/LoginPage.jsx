@@ -25,14 +25,14 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const phone = e.target.phone.value;
+    const name = e.target.name.value.trim();
+    const phone = e.target.phone.value.trim();
 
     const data = { name, phone };
     setFormData(data);
 
     const { error } = await supabase
-      .from('submissions-Parda') // your table name
+      .from('submissions_parda') // ✅ updated table name here
       .insert([data]);
 
     if (error) {
