@@ -5,64 +5,62 @@ const InfoPage = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/loginpage')
-  }
-
-
+    navigate('/loginpage');
+  };
 
   return (
     <div className="bg-white min-h-screen px-4 py-8 font-sans text-gray-800 max-w-xl mx-auto">
       {/* Sana va vaqt */}
       <div className="border border-red-500 rounded-lg text-red-600 font-semibold text-center text-base py-2 mb-5 shadow-sm">
-        18-Iyul | Soat 21:00 da
+        18-Iyul | Soat 20:00 da
       </div>
 
       {/* Kichik sarlavha */}
       <p className="text-sm text-gray-600 uppercase tracking-wide text-center mb-2">
-        Tikuvchilar uchun Shaxlo Mamedovadan 1 kunlik onlayn master-klass
+        Tikuvchilar uchun Umida To‘lqinjonova bilan 1 kunlik onlayn master-klass
       </p>
 
-      {/* Asosiy savol */}
+      {/* Asosiy sarlavha */}
       <h1 className="text-xl font-bold leading-snug text-center mb-6">
-        Qanday qilib, tikish narxini oshirmasdan, pardoz tikuvchilik orqali 5–10 mln so‘m daromadga chiqish mumkin?
+        13 yillik tajriba, 400+ shogird, va endi navbat sizda — “Italiyanka” modelini boshidan oxirigacha o‘rganing, san’atingizni qadrlang va 6 000 000 so‘mlik kursni tekinga olish imkoniyatini qo‘ldan boy bermang!
       </h1>
 
       {/* Rasm */}
       <div className="flex justify-center mb-6">
         <img
           src="/hahaha.jpg"
-          alt="Shaxlo Mamedova"
+          alt="Umida To‘lqinjonova"
           className="w-60 h-auto rounded-xl shadow-md"
         />
       </div>
 
       {/* Birinchi tugma */}
-      <button className="bg-red-600 hover:bg-red-700 transition text-white font-bold py-3 rounded-full w-full mb-8 shadow-md">
+      <button onClick={handleClick} className="bg-red-600 hover:bg-red-700 transition text-white font-bold py-3 rounded-full w-full mb-8 shadow-md">
         BEPUL JOY BAND QILISH
       </button>
 
-      {/* Masterclass haqida ma'lumot */}
+      {/* Masterklass haqida */}
       <div className="bg-gray-50 rounded-lg p-5 shadow-sm space-y-6">
-        <h2 className="text-lg font-semibold text-center mb-2">Master Klass'da siz:</h2>
+        <h2 className="text-lg font-semibold text-center mb-2">Ushbu Master-klassda siz:</h2>
 
         <div className="flex items-start gap-4">
           <div className="text-red-500 text-2xl">💰</div>
           <p className="text-sm leading-relaxed">
-            Qanday qilib, tikish narxlarini oshirmasdan turib, daromadingizni bir necha baravar oshirishni o‘rganasiz
+            Mehnatingizga narx qo‘yishni, san’atingizni qadrlashni va mijoz bilan to‘g‘ri ishlash sirlarini bilib olasiz.
           </p>
         </div>
 
         <div className="flex items-start gap-4">
           <div className="text-red-500 text-2xl">🪟</div>
           <p className="text-sm leading-relaxed">
-            Italiyancha pardani qanday tikish bo‘yicha to‘liq amaliy ko‘rsatmani olasiz
+            “Italiyanka” pardani – chizishdan tortib tikish, taxlash va osishgacha – har bir bosqichini o‘zingiz bajarasiz.
           </p>
         </div>
 
         <div className="flex items-start gap-4">
           <div className="text-red-500 text-2xl">🎤</div>
           <p className="text-sm leading-relaxed">
-            Umida To'lqinjonova o‘z kursining imkoniyatlarini ko‘rsatadi va sizga to‘liq yo‘l-yo‘riq beradi
+            Ustoz Umida To‘lqinjonova o‘z sirlarini ochib, sizni to‘liq yo‘ldan boshlab, ustozlik safariga olib chiqadi.
           </p>
         </div>
       </div>

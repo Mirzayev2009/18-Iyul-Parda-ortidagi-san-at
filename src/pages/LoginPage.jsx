@@ -23,32 +23,50 @@ const LoginPage = () => {
     }
   }, [submitted, secondsLeft]);
 
-  const isValidPhone = (phone) => {
-    const uzbekRegex = /^\+998\s\d{2}\s\d{3}\s\d{2}\s\d{2}$/;
-    return uzbekRegex.test(phone);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSubmitting) return; // prevent double clicks
+    if (isSubmitting) return;
+    setIsSubmitting(true);
 
     const name = e.target.name.value.trim();
-    const phone = e.target.phone.value.trim();
+    let rawPhone = e.target.phone.value.trim().replace(/\s+/g, "");
 
-    if (!isValidPhone(phone)) {
-      alert("Iltimos, raqamni +998 90 123 45 67 formatida kiriting.");
+    if (!/^\d{9}$/.test(rawPhone)) {
+      alert("Raqamni to‘g‘ri kiriting: 90 123 45 67");
+      setIsSubmitting(false);
       return;
     }
 
-    const data = { name, phone };
-    setIsSubmitting(true); // disable button
+    const fullPhone = '+998' + rawPhone;
+    const data = { name, phone: fullPhone };
 
-    const { error } = await supabase
-      .from('submissions_parda') // ✅ fixed table name
+    // Check for duplicates
+    const { data: existing, error: selectError } = await supabase
+      .from('submissions_parda')
+      .select("*")
+      .eq("phone", fullPhone);
+
+    if (selectError) {
+      console.error("❌ Supabase select error:", selectError.message);
+      alert("Xatolik yuz berdi. Qaytadan urinib ko‘ring.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (existing.length > 0) {
+      alert("Bu raqam allaqachon ro‘yxatdan o‘tgan.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Insert if unique
+    const { error: insertError } = await supabase
+      .from('submissions_parda')
       .insert([data]);
 
-    if (error) {
-      console.error("❌ Supabase error:", error.message);
+    if (insertError) {
+      console.error("❌ Supabase insert error:", insertError.message);
+      alert("Xatolik yuz berdi. Iltimos, keyinroq urinib ko‘ring.");
       setIsSubmitting(false);
     } else {
       setFormData(data);
@@ -82,13 +100,20 @@ const LoginPage = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="phone" className="text-base">Telefon raqam</Label>
-                <Input
-                  name="phone"
-                  id="phone"
-                  placeholder="+998 90 123 45 67"
-                  className="h-12 text-base"
-                  required
-                />
+                <div className="flex items-center space-x-2">
+                  <span className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-l-md text-sm font-medium text-gray-600">
+                    +998
+                  </span>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    placeholder="90 123 45 67"
+                    className="h-12 text-base rounded-l-none"
+                    pattern="^\s*\d{2}[\s]?\d{3}[\s]?\d{2}[\s]?\d{2}\s*$"
+                    title="Raqamni to‘g‘ri formatda kiriting: 90 123 45 67"
+                    required
+                  />
+                </div>
               </div>
 
               <Button
