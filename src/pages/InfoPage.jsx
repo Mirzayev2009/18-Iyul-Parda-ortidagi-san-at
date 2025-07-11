@@ -22,7 +22,7 @@ const InfoPage = () => {
 
       {/* Asosiy sarlavha */}
       <h1 className="text-xl font-bold leading-snug text-center mb-6">
-        13 yillik tajriba, 400+ shogird, va endi navbat sizda — “Italiyanka” modelini boshidan oxirigacha o‘rganing, san’atingizni qadrlang va 6 000 000 so‘mlik kursni tekinga olish imkoniyatini qo‘ldan boy bermang!
+        13 yillik tajriba, 400+ shogird, va endi navbat sizga — “Italiyanka” modelini boshidan oxirigacha o‘rganing, san’atingizni qadrlang va 6 000 000 so‘mlik kursni tekinga olish imkoniyatini qo‘ldan boy bermang!
       </h1>
 
       {/* Rasm */}
@@ -46,21 +46,21 @@ const InfoPage = () => {
         <div className="flex items-start gap-4">
           <div className="text-red-500 text-2xl">💰</div>
           <p className="text-sm leading-relaxed">
-            Mehnatingizga narx qo‘yishni, san’atingizni qadrlashni va mijoz bilan to‘g‘ri ishlash sirlarini bilib olasiz.
+            Mehnatingizga narx qo‘yishni, san’atingizni qadrlashni va mijoz bilan to‘g‘ri ishlash sirlarini bilib olasiz!
           </p>
         </div>
 
         <div className="flex items-start gap-4">
           <div className="text-red-500 text-2xl">🪟</div>
           <p className="text-sm leading-relaxed">
-            “Italiyanka” pardani – chizishdan tortib tikish, taxlash va osishgacha – har bir bosqichini o‘zingiz bajarasiz.
+            “Italiyanka” modelini -  doskada chizishdan tortib,  tikish, taxlash va osishgacha – har bir bosqichini o'rganib olasiz!
           </p>
         </div>
 
         <div className="flex items-start gap-4">
           <div className="text-red-500 text-2xl">🎤</div>
           <p className="text-sm leading-relaxed">
-            Ustoz Umida To‘lqinjonova o‘z sirlarini ochib, sizni to‘liq yo‘ldan boshlab, ustozlik safariga olib chiqadi.
+            Ustoz Umida To‘lqinjonova o‘z sirlarini ochib, sizni to‘g'ri yo‘ldan boshlab, masterlik safariga olib chiqadi.
           </p>
         </div>
       </div>
