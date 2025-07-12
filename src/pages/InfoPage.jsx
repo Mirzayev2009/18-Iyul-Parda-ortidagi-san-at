@@ -8,7 +8,7 @@ const InfoPage = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen px-4 py-8 font-sans text-gray-800 max-w-xl mx-auto">
+    <div className="bg-gray-100 min-h-screen px-4 py-8 font-sans text-gray-800 max-w-xl mx-auto">
       {/* Sana va vaqt */}
       <div className="border border-red-500 rounded-lg text-red-600 font-semibold text-center text-base py-2 mb-5 shadow-sm">
         18-Iyul | Soat 20:00 da
@@ -21,15 +21,13 @@ const InfoPage = () => {
 
       {/* Asosiy sarlavha */}
       <h1 className="text-xl font-semibold leading-snug text-center mb-6 shadow-lg rounded-2xl">
-        Qanday qilib parda sohasida o'z Mehnatingizni <span className='font-bold text-red-600'>"QIMMATGA SOTISH"</span>, <span className='font-bold text-red-600'>"PARDA BIZNESINI 0 dan"</span> qanday boshlash va shuningdek  <span className='font-bold text-red-600'>“ITALYANKA”</span> modelini boshidan oxirigacha o‘rganishni xohlaysizmi!?
+        Pardani <span className='font-bold text-red-600'>QIMMATGA</span> sotishni,<span className='font-bold text-red-600'> PARDA BIZNESINI</span> 0 dan boshlashni va <span className='font-bold text-red-600'>“ITALYANKA”</span> modelini to‘liq o‘rganishni xohlaysizmi?
+
+      <h1>Unda BEPUL master-klassimiz aynan siz uchun! 👇</h1>
       </h1>
 
       {/* Kurs narxi qismi */}
-      <div className="w-full  p-6 rounded-2xl shadow-lg border-red-600 bg-white flex justify-center items-center mt-5 mb-6">
-        <h2 className="text-2xl font-semibold text-center ">
-          <span className='text-red-600 font-bold'>6 000 000</span> so‘mlik kursni <span className="text-red-600 font-bold">mutlaqo bepul</span> olish imkoniyatini boy bermang!
-        </h2>
-      </div>
+   
 
       {/* Rasm */}
       <div className="flex w-full justify-center  ">
@@ -50,9 +48,14 @@ const InfoPage = () => {
         </h1>
       </button>
           </div>
-
+  
+      <div className="w-full  p-6 rounded-2xl shadow-lg border-red-600 bg-white flex justify-center items-center mt-5 mb-6">
+        <h2 className="text-2xl font-semibold text-center ">
+          <span className='text-red-600 font-bold'>6 000 000</span> so‘mlik kursni <span className="text-red-600 font-bold">mutlaqo bepul</span> olish imkoniyatini boy bermang!
+        </h2>
+      </div>
       {/* Masterklass haqida */}
-      <div className="bg-gray-50 rounded-lg p-5 shadow-lg space-y-6 ">
+      <div className="bg-gray-50 rounded-2xl p-5 shadow-lg space-y-6 ">
         <h2 className="text-lg font-semibold text-center mb-2">Ushbu master-klassda siz:</h2>
 
         <div className="flex items-start gap-4">
