@@ -65,7 +65,7 @@ const InfoPage = () => {
         <div className="flex items-start gap-4">
           <div className="text-red-500 text-2xl">🪟</div>
           <p className="text-sm leading-relaxed">
-            “Italiyanka” modelini — doskada chizishdan boshlab, tikish, taxlash va osishgacha — to‘liq amaliy o‘rganasiz.
+            “Italiyanka” modelini - doskada chizishdan boshlab, tikish, taxlash va osishgacha - to‘liq amaliy o‘rganasiz.
           </p>
         </div>
 
