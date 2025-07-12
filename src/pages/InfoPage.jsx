@@ -14,10 +14,7 @@ const InfoPage = () => {
         18-Iyul | Soat 20:00 da
       </div>
 
-      {/* Kichik sarlavha */}
-      <p className="text-sm text-gray-600 uppercase tracking-wide text-center mb-2">
-        Tikuvchilar uchun Umida To‘lqinjonova bilan 1 kunlik bepul onlayn master-klass
-      </p>
+
 
       {/* Asosiy sarlavha */}
       <h1 className="text-xl font-semibold leading-snug text-center mb-6 shadow-lg rounded-2xl">
@@ -32,10 +29,10 @@ const InfoPage = () => {
       {/* Rasm */}
       <div className="flex w-full justify-center  ">
         <img
-          src="/IMG_5339.webp"
+          src="/IMG_5339 (1) (2).webp"
           alt="Umida To‘lqinjonova"
           className="w-60 h-auto rounded-xl "
-           loading="eager"
+
         />
       </div>
           <div className='w-full flex justify-center items-center'>
