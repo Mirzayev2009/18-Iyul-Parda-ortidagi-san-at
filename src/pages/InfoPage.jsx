@@ -37,6 +37,7 @@ const InfoPage = () => {
           src="/IMG_5339.webp"
           alt="Umida To‘lqinjonova"
           className="w-60 h-auto rounded-xl "
+           loading="eager"
         />
       </div>
           <div className='w-full flex justify-center items-center'>
