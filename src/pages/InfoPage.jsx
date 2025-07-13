@@ -1,7 +1,7 @@
 import React from 'react';
 
 const InfoPage = () => {
-  const telegramLink = "https://t.me/umida_pardalarN1";
+  const telegramLink = "https://t.me/+FO5aEdiO5OQxYjBi";
 
   const handleClick = () => {
     window.location.href = telegramLink;
