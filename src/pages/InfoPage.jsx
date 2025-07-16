@@ -1,86 +1,66 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const InfoPage = () => {
-  const telegramLink = "https://t.me/+FO5aEdiO5OQxYjBi";
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    window.location.href = telegramLink;
+    navigate("/loginpage");
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen px-4 py-8 font-sans text-gray-800 max-w-xl mx-auto">
-      {/* Sana va vaqt */}
-      <div className="border border-red-500 rounded-lg text-red-600 font-semibold text-center text-base py-2 mb-5 shadow-sm">
-        18-Iyul | Soat 20:00 da
+    <div className="bg-gradient-to-b from-gray-100 to-gray-200 min-h-screen px-4 py-10 font-sans text-gray-800 max-w-2xl mx-auto space-y-8">
+      
+      {/* Date & Time */}
+      <div className="border border-red-500 rounded-xl text-red-600 font-bold text-center text-lg py-2 shadow-md tracking-wide">
+        📅 18-Iyul | 🕘 Soat 21:00 da
       </div>
 
-
-
-      {/* Asosiy sarlavha */}
-      <h1 className="text-xl font-semibold leading-snug text-center mb-6 shadow-lg rounded-2xl">
-        Pardani <span className='font-bold text-red-600'>QIMMATGA</span> sotishni,<span className='font-bold text-red-600'> PARDA BIZNESINI</span> 0 dan boshlashni va <span className='font-bold text-red-600'>“ITALYANKA”</span> modelini to‘liq o‘rganishni xohlaysizmi?
-
-      <h1>Unda BEPUL master-klassimiz aynan siz uchun! 👇</h1>
-      </h1>
-
-      {/* Kurs narxi qismi */}
-   
-
-      {/* Rasm */}
-      <div className="flex w-full justify-center  ">
-        <img
-          src="/IMG_5339 (1) (2).webp"
-          alt="Umida To‘lqinjonova"
-          className="w-60 h-auto rounded-xl "
-
-        />
-      </div>
-          <div className='w-full flex justify-center items-center'>
-              <button
-        onClick={handleClick}
-        className=" bg-red-600 pt-5 pb-5 hover:bg-red-700 transition text-white font-bold py-3 rounded-4xl shadow-lg w-3/4 "
-      >
-        <h1 className='font-bold text-4xl'>
-          BEPUL QATNASHISH!
+      {/* Main Headline */}
+      <div className="bg-white rounded-2xl shadow-xl p-6 text-center space-y-4">
+        <h1 className="text-2xl font-bold leading-snug">
+          Pardani <span className="text-red-600">QIMMATGA</span> sotishni, <span className="text-red-600">PARDA BIZNESINI</span> 0 dan boshlashni va <span className="text-red-600">ITALYANKA</span> modelini o‘rganishni xohlaysizmi?
         </h1>
-      </button>
-          </div>
-  
-      <div className="w-full  p-6 rounded-2xl shadow-lg border-red-600 bg-white flex justify-center items-center mt-5 mb-6">
-        <h2 className="text-2xl font-semibold text-center ">
-          <span className='text-red-600 font-bold'>6 000 000</span> so‘mlik kursni <span className="text-red-600 font-bold">mutlaqo bepul</span> olish imkoniyatini boy bermang!
+        <h2 className="text-xl font-medium">Unda BEPUL master-klassimiz aynan siz uchun! 👇</h2>
+      </div>
+
+{/* Unified Image + Button Block */}
+<div className="rounded-2xl overflow-hidden flex flex-wrap justify-center w-fit mx-auto">
+  <img
+    src="/IMG_5339 (1) (2).webp"
+    alt="Umida To‘lqinjonova"
+    className="w-72 h-auto block" // `block` removes inline whitespace
+  />
+  <button
+    onClick={handleClick}
+    className="bg-red-600 w-2/3 block hover:bg-red-700 text-white text-2xl rounded-full font-extrabold py-4 px-10 transition-all"
+  >
+    🎁 BEPUL QATNASHISH!
+  </button>
+</div>
+
+
+      {/* Offer Section */}
+      <div className="bg-white rounded-2xl shadow-lg border border-red-400 p-5 text-center space-y-4">
+        <h2 className="text-xl font-semibold">
+          <span className="text-red-600 font-bold">6 000 000</span> so‘mlik kursni <span className="text-red-600 font-bold">mutlaqo bepul</span> olish imkoniyatini boy bermang!
         </h2>
-      </div>
-      {/* Masterklass haqida */}
-      <div className="bg-gray-50 rounded-2xl p-5 shadow-lg space-y-6 ">
-        <h2 className="text-lg font-semibold text-center mb-2">Ushbu master-klassda siz:</h2>
-
-        <div className="flex items-start gap-4">
-          <div className="text-red-500 text-2xl">💰</div>
-          <p className="text-sm leading-relaxed">
-            Mehnatingizni qanday qadrlashni, narx belgilashni va mijoz bilan ishlash sirlarini bilib olasiz.
-          </p>
-        </div>
-
-        <div className="flex items-start gap-4">
-          <div className="text-red-500 text-2xl">🪟</div>
-          <p className="text-sm leading-relaxed">
-            “Italiyanka” modelini doskada chizishdan boshlab, tikish, taxlash va osishgacha to‘liq amaliy o‘rganasiz.
-          </p>
-        </div>
-
-        <div className="flex items-start gap-4">
-          <div className="text-red-500 text-2xl">🎤</div>
-          <p className="text-sm leading-relaxed">
-            Ustoz Umida To‘lqinjonova o‘z sirlarini ochib beradi va sizni o‘z yo‘li bilan ustozlik sari yetaklaydi.
-          </p>
-        </div>
+        <p className="text-base">
+          Hali hech kimga berilmagan <span className="text-red-600 font-bold">maxfiy bonus</span> video darslikni ham qo‘lga kiriting!
+        </p>
       </div>
 
-      {/* Tugma */}
-
+      {/* Masterclass Info */}
+      <div className="bg-white rounded-2xl p-6 shadow-xl border border-red-400 space-y-4">
+        <h2 className="text-lg font-bold text-center text-gray-800">Master-klassing eng muhim qismi!</h2>
+        <ul className="list-disc list-inside space-y-2 text-base">
+          <li>📌 Parda sohasida hali hech kimda bo‘lmagan yangi kurs taqdimoti bo‘ladi!</li>
+          <li>📌 Sizga aniq <span className="font-bold text-red-600">VADA</span> beriladi – bu taklif boshqalarda yo‘q!</li>
+        </ul>
+      </div>
     </div>
   );
 };
 
 export default InfoPage;
+

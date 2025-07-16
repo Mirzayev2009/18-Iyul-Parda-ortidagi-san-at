@@ -40,7 +40,6 @@ const LoginPage = () => {
     const fullPhone = '+998' + rawPhone;
     const data = { name, phone: fullPhone };
 
-    // Check for duplicates
     const { data: existing, error: selectError } = await supabase
       .from('submissions_parda')
       .select("*")
@@ -59,7 +58,6 @@ const LoginPage = () => {
       return;
     }
 
-    // Insert if unique
     const { error: insertError } = await supabase
       .from('submissions_parda')
       .insert([data]);
@@ -80,35 +78,41 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center bg-white px-4">
-        <Card className="w-full max-w-lg shadow-xl border border-gray-200 z-10">
-          <CardHeader className="text-center space-y-2">
-            <CardTitle className="text-2xl font-bold text-black">
-              Master Class uchun oʻz joyingizni band qiling
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-violet-400 to-violet-50 px-4">
+        <Card className="w-full max-w-lg shadow-2xl backdrop-blur-xl bg-white/80 border border-red-100">
+          <CardHeader className="text-center space-y-3 pt-6">
+            <CardTitle className="text-2xl font-extrabold text-black leading-tight">
+              Master Klass uchun joyni hoziroq band qiling
             </CardTitle>
             <p className="text-sm text-gray-500">
-              Kontaktlaringizni yozing, keyin Telegram botga oʻtasiz
+              Ismingiz va raqamingizni yozing. Keyin avtomatik Telegram botga yo‘naltirilasiz.
             </p>
           </CardHeader>
 
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 mt-2">
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-base">Ismingiz</Label>
-                <Input name="name" id="name" placeholder="Ismingiz" className="h-12 text-base" required />
+                <Label htmlFor="name" className="text-base font-semibold">Ismingiz</Label>
+                <Input
+                  name="name"
+                  id="name"
+                  placeholder="Masalan: Umida"
+                  className="h-12 text-base rounded-xl border-gray-300 focus:ring-2 focus:ring-red-400"
+                  required
+                />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="phone" className="text-base">Telefon raqam</Label>
-                <div className="flex items-center space-x-2">
-                  <span className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-l-md text-sm font-medium text-gray-600">
+                <Label htmlFor="phone" className="text-base font-semibold">Telefon raqam</Label>
+                <div className="flex items-center">
+                  <span className="px-3 py-2 bg-gray-100 border border-gray-300 rounded-l-xl text-sm font-medium text-gray-600">
                     +998
                   </span>
                   <Input
                     id="phone"
                     name="phone"
                     placeholder="90 123 45 67"
-                    className="h-12 text-base rounded-l-none"
+                    className="h-12 text-base rounded-r-xl border-l-0 focus:ring-2 focus:ring-red-400"
                     pattern="^\s*\d{2}[\s]?\d{3}[\s]?\d{2}[\s]?\d{2}\s*$"
                     title="Raqamni to‘g‘ri formatda kiriting: 90 123 45 67"
                     required
@@ -118,37 +122,38 @@ const LoginPage = () => {
 
               <Button
                 type="submit"
-                className="w-full h-12 text-lg font-semibold bg-black hover:bg-gray-800 disabled:opacity-50"
+                className="w-full h-12 text-lg font-bold bg-black shadow-violet-900  shadow-lg hover:scale-3d text-white rounded-xl transition"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Yuborilmoqda..." : "Yuborish"}
+                {isSubmitting ? "⏳ Yuborilmoqda..." : "🚀 Yuborish"}
               </Button>
 
-              <p className="text-center text-sm text-gray-400">Bu mutlaqo BEPUL</p>
+              <p className="text-center text-sm text-gray-400 mt-1">Ro‘yxatdan o‘tish — mutlaqo bepul</p>
             </form>
           </CardContent>
         </Card>
       </div>
 
+      {/* Success Redirect Overlay */}
       {submitted && (
-        <div className="fixed inset-0 z-50 flex flex-col">
-          <div className="h-1/2 bg-black/30" />
-          <div className="h-1/2 bg-black text-white px-6 py-8 flex flex-col justify-between rounded-t-2xl">
+        <div className="fixed inset-0 z-50 bg-black/70 flex flex-col justify-end">
+          <div className="bg-white w-full rounded-t-2xl p-8 shadow-xl animate-slideUp">
             <div className="text-center space-y-4">
-              <h2 className="text-2xl font-bold">Sizni Telegram botga yuboramiz</h2>
-              <p className="text-lg">
-                {5 - secondsLeft + 1} soniya... avtomatik oʻtkaziladi
+              <h2 className="text-2xl font-bold text-black">🎉 Yuborildi!</h2>
+              <p className="text-lg text-gray-700">
+                {5 - secondsLeft + 1} soniyadan so‘ng siz Telegram botga o‘tasiz.
               </p>
-              <p className="text-sm text-gray-300">
-                Ismingiz: <b>{formData.name}</b><br />
-                Raqamingiz: <b>{formData.phone}</b>
+              <p className="text-sm text-gray-500">
+                <b>Ism:</b> {formData.name}<br />
+                <b>Telefon:</b> {formData.phone}
               </p>
             </div>
+
             <Button
               onClick={handleManualRedirect}
-              className="w-full mt-6 bg-white text-black font-bold text-lg h-12 rounded-xl hover:bg-gray-200"
+              className="w-full mt-6 bg-black text-white font-bold text-lg h-12 rounded-xl hover:bg-gray-900 transition"
             >
-              Davom etish
+              ➡️ Davom etish
             </Button>
           </div>
         </div>
